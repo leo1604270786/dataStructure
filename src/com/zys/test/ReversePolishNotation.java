@@ -194,28 +194,4 @@ public class ReversePolishNotation {
         }
         return list;
     }
-    @Test
-    public void test(){
-        Integer a = 12;
-        Integer b = 10;
-        System.out.println("a=" + a + " b=" + b);
-        swap(a,b);
-        System.out.println("a=" + a + " b=" + b);
-
-        String stra = "abc";
-        String strb = "def";
-        System.out.println("stra=" + stra + " strb="+strb);
-        swapStr(stra,strb);
-        System.out.println("stra=" + stra + " strb="+strb);
-    }
-    public void swap(Integer a, Integer b){
-        Integer temp = a;
-        a = b;
-        b = temp;
-    }
-    public void swapStr(String a, String b){
-        String temp = a;
-        a = b;
-        b = temp;
-    }
 }

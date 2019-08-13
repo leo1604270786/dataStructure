@@ -36,13 +36,15 @@ public class ShellSort {
      */
     public static void shellSort2(int[] arr) {
         int curr = 0;
-        //进行分组
+        //进行分组，gap为步长,每次缩小为上一次1/2，第一次每组两个元素
         for (int gap = arr.length / 2; gap > 0; gap /= 2){
-            //遍历各组元素
+            //遍历各组元素，i = gap开始就跳过了每组的第一个元素，因为内部使用的是插入排序，所以认为第一个元素有序
             for (int i = gap; i < arr.length; i++){
                 //暂存当前待插入的元素
                 curr = arr[i];
                 int j = i;
+                //将待插入元素和同组前一个元素比较（插入排序过程）
+                //注意：由于步长为gap，所以同组的前一个元素的索引为当前元素索引 - 步长（即 j 的同组的前一个元素的索引为 j - gap）
                 for (; j -gap >= 0 && curr < arr[j-gap]; j -= gap){
                     arr[j] = arr[j-gap];
                 }

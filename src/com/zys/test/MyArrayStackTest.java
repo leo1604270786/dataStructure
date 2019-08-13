@@ -79,15 +79,6 @@ public class MyArrayStackTest {
         printMyStack();
     }
 
-    /**
-     * 实现括号匹配 利用栈
-     */
-    @Test
-    public void brackersMatching() {
-        String bracketsStr = "{[()]}";
-
-    }
-
     @Test
     public void calculateExpression() {
         String expression = "7*2*2-5+1-5+3-4";

@@ -13,19 +13,21 @@ public class RadixSort {
         int[][] buckets = new int[10][arr.length];
         //每个桶中有效元素的个数
         int[] bucketCounts = new int[10];
-        //获取最大位数
+        //获取最大位数，先获取最大值
         int max = arr[0];
         for (int i = 1; i < arr.length; i++) {
             if (max < arr[i]) {
                 max = arr[i];
             }
         }
+        //最大值的长度即为最大位数
         int maxLength = (max + "").length();
-        //共进行最长位数次 分配桶，回收数据
+        //共进行最大位数次 分配桶，回收数据
         for (int i = 0, n = 1; i < maxLength; i++, n *= 10) {
             for (int j = 0; j < arr.length; j++) {
                 //获取对应位数 ，第一次为个位，第二次为十位 ...
                 int value = arr[j] / n % 10;
+                //value的值就是这次分配桶的过程中当前元素应该放入的桶的索引（编号）
                 buckets[value][bucketCounts[value]++] = arr[j];
             }
             //遍历所有桶，按照顺序取出元素，放入原数组

@@ -28,6 +28,13 @@ public class SortTest {
     }
 
     @Test
+    public void testInsertionSort() {
+        printArray(arr);
+        InsertionSort.insertionSort(arr);
+        printArray(arr);
+    }
+
+    @Test
     public void testBubbleSort() {
 //        System.out.println("未排序数组：");
 //        System.out.println(Arrays.toString(arr));
@@ -56,9 +63,11 @@ public class SortTest {
     public void testCompare() {
         //生成数组
         generateRandomArray(80000);
-        //复制一份
+        //复制两份
         int[] arr2 = new int[arr.length];
         System.arraycopy(arr, 0, arr2, 0, arr.length);
+        int[] arr3 = new int[arr.length];
+        System.arraycopy(arr, 0, arr3, 0, arr.length);
 
         long startTime = System.currentTimeMillis();
         BubbleSort.bubbleSort2(arr);
@@ -70,19 +79,11 @@ public class SortTest {
         SelectionSort.selectionSort2(arr2);
         endTime = System.currentTimeMillis();
         System.out.println("选择排序花费时间：" + (endTime - startTime) + " ms");
-    }
 
-    @Test
-    public void testShellSort() {
-//        printArray(arr);
-//        ShellSort.shellSort(arr);
-//        printArray(arr);
-        //生成数组
-        generateRandomArray(80000);
-        long startTime = System.currentTimeMillis();
-        ShellSort.shellSort2(arr);
-        long endTime = System.currentTimeMillis();
-        System.out.println("希尔排序花费时间：" + (endTime - startTime) + " ms");
+        startTime = System.currentTimeMillis();
+        InsertionSort.insertionSort(arr3);
+        endTime = System.currentTimeMillis();
+        System.out.println("插入排序花费时间：" + (endTime - startTime) + " ms");
     }
 
     @Test
@@ -112,6 +113,46 @@ public class SortTest {
     }
 
     @Test
+    public void testShellSort() {
+//        printArray(arr);
+//        ShellSort.shellSort(arr);
+//        printArray(arr);
+        //生成数组
+        generateRandomArray(80000);
+        long startTime = System.currentTimeMillis();
+        ShellSort.shellSort2(arr);
+        long endTime = System.currentTimeMillis();
+        System.out.println("希尔排序花费时间：" + (endTime - startTime) + " ms");
+    }
+
+    @Test
+    public void testCompare2() {
+        //生成数组
+        generateRandomArray(80000);
+        //复制两份
+        int[] arr2 = new int[arr.length];
+        System.arraycopy(arr, 0, arr2, 0, arr.length);
+        int[] arr3 = new int[arr.length];
+        System.arraycopy(arr, 0, arr3, 0, arr.length);
+
+        long startTime = System.currentTimeMillis();
+        QuickSort.quickSort(arr, 0, arr.length - 1);
+        long endTime = System.currentTimeMillis();
+        System.out.println("快速排序花费时间：" + (endTime - startTime) + " ms");
+
+
+        startTime = System.currentTimeMillis();
+        MergeSort.mergeSort(arr2, 0, arr2.length - 1);
+        endTime = System.currentTimeMillis();
+        System.out.println("归并排序花费时间：" + (endTime - startTime) + " ms");
+
+        startTime = System.currentTimeMillis();
+        ShellSort.shellSort2(arr3);
+        endTime = System.currentTimeMillis();
+        System.out.println("希尔排序花费时间：" + (endTime - startTime) + " ms");
+    }
+
+    @Test
     public void testRadixSort() {
 //        printArray(arr);
 //        RadixSort.radixSort(arr);
@@ -122,6 +163,39 @@ public class SortTest {
         RadixSort.radixSort(arr);
         long endTime = System.currentTimeMillis();
         System.out.println("基数排序花费时间：" + (endTime - startTime) + " ms");
+    }
+
+    @Test
+    public void testHeapSort() {
+//        System.out.println(Arrays.toString(arr));
+//        HeapSort.heapSort(arr);
+//        System.out.println(Arrays.toString(arr));
+        //生成数组
+        generateRandomArray(8000000);
+        long startTime = System.currentTimeMillis();
+        HeapSort.heapSort(arr);
+        long endTime = System.currentTimeMillis();
+        System.out.println("堆排序花费时间：" + (endTime - startTime) + " ms");
+    }
+
+    @Test
+    public void testCompare3() {
+        //生成数组
+        generateRandomArray(8000000);
+        //复制一份
+        int[] arr2 = new int[arr.length];
+        System.arraycopy(arr, 0, arr2, 0, arr.length);
+
+        long startTime = System.currentTimeMillis();
+        RadixSort.radixSort(arr);
+        long endTime = System.currentTimeMillis();
+        System.out.println("基数排序花费时间：" + (endTime - startTime) + " ms");
+
+
+        startTime = System.currentTimeMillis();
+        HeapSort.heapSort(arr2);
+        endTime = System.currentTimeMillis();
+        System.out.println("堆排序花费时间：" + (endTime - startTime) + " ms");
     }
 
     /**
@@ -136,12 +210,6 @@ public class SortTest {
         }
     }
 
-    @Test
-    public void testInsertionSort() {
-        printArray(arr);
-        InsertionSort.insertionSort(arr);
-        printArray(arr);
-    }
 
     private void printArray(int[] a) {
         for (int x : a) {

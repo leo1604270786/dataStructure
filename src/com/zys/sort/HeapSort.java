@@ -23,11 +23,11 @@ public class HeapSort {
      */
     public static void heapSort(int[] arr) {
         //最后一个非叶子结点索引 = arr.length / 2 - 1
-        //1.将无序序列调整成一个大顶堆
+        //1.将无序序列调整成一个大顶堆，从最后一个非叶子结点开始
         for (int i = arr.length / 2 - 1; i >= 0; i--) {
             adjustHeap(arr, i, arr.length);
         }
-        for (int j = arr.length - 1; j >= 0; j--) {
+        for (int j = arr.length - 1; j > 0; j--) {
             //2. 将堆顶元素与末尾元素交换
             int temp = arr[j];
             arr[j] = arr[0];
@@ -44,7 +44,7 @@ public class HeapSort {
      * @param i      非叶子结点索引
      * @param length 调整中需要考虑的元素个数（每次调整并将堆顶元素交换至数组最后，length--）
      */
-    public static void adjustHeap(int[] arr, int i, int length) {
+    private static void adjustHeap(int[] arr, int i, int length) {
         //先保存当前根结点的值
         int currRoot = arr[i];
         //j指向当前子树的根结点（i）的左子结点
