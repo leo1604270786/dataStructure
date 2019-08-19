@@ -12,24 +12,99 @@ public class HuffmanCode {
     //哈夫曼编码表
     private static Map<Character, String> huffmanCode = new HashMap<>();
 
+
+    public static String decompress(byte[] huffmanCodeBytes){
+        return decompress(huffmanCode,huffmanCodeBytes);
+    }
+
+    /**
+     * 将哈夫曼编码、压缩后的字节数组按照哈夫曼表解压、并解码成原始文本内容
+     * @param huffmanCode 哈夫曼编码表
+     * @param huffmanCodeBytes 编码、压缩后的哈夫曼字节数组
+     * @return
+     */
+    private static String decompress(Map<Character, String> huffmanCode, byte[] huffmanCodeBytes) {
+        StringBuilder stringBuilder = new StringBuilder();
+        //将哈夫曼编码后的字节数组转为二进制串
+        for (int i = 0; i < huffmanCodeBytes.length; i++) {
+            boolean b = i != huffmanCodeBytes.length - 1;
+            stringBuilder.append(byte2binaryString(huffmanCodeBytes[i], b));
+        }
+        //将字符串根据哈夫曼编码表进行解码
+        //1.先将哈夫曼编码表反向调整（键值互换）
+        Map<String,Character> map = new HashMap<>();
+        for (Map.Entry<Character,String> entry : huffmanCode.entrySet()){
+            map.put(entry.getValue(),entry.getKey());
+        }
+        //2.扫描二进制串，转成list
+        List<Character> characters = new ArrayList<>();
+        for (int i = 0; i < stringBuilder.length();){
+            int count = 1;
+            boolean flag = true;
+            String key = null;
+            while (flag){
+                key = stringBuilder.substring(i,i+count);
+                //匹配成功
+                if (map.containsKey(key)){
+                    flag = false;
+                } else {
+                    count++;
+                }
+            }
+            //将匹配成功的字符加入list
+            characters.add(map.get(key));
+            //i指向匹配成功后的索引
+            i += count;
+        }
+        //3.转成char数组，在转成String返回
+        Character[] array = characters.toArray(new Character[]{});
+        char[] chars = new char[array.length];
+        for (int i = 0; i < array.length; i++){
+            chars[i] = array[i];
+        }
+        return new String(chars);
+    }
+
+    /**
+     * 将一个byte转为二进制字符串（补码）
+     *
+     * @param b
+     * @param flag 是否需要补齐高位（编码最后一位不需要补高位）
+     * @return
+     */
+    private static String byte2binaryString(Byte b, boolean flag) {
+        int temp = b;
+        if (flag) { //需要补高位
+            temp |= 256;
+        }
+        String binaryString = Integer.toBinaryString(temp);
+        if (flag) {
+            return binaryString.substring(binaryString.length() - 8);
+        } else {
+            return binaryString;
+        }
+    }
+
     /**
      * 返回字符串根据哈夫曼编码压缩后的字节数组
+     *
      * @param content
      * @return
      */
-    public static byte[] compress(String content){
+    public static byte[] compress(String content) {
         List<Node> nodes = getNodes(content);
         //创建哈夫曼树
         Node huffmanTree = createHuffmanTree(nodes);
         //进行哈夫曼编码
         encode(huffmanTree);
         //根据哈夫曼编码表对字符串进行压缩并返回
-        return compress(content,huffmanCode);
+        return compress(content, huffmanCode);
     }
 
     /**
      * 根据其哈夫曼编码表对字符串进行压缩
-     * @param content 带压缩的内容
+     *
+     * @param content     带压缩的内容
      * @param huffmanCode content对应的哈夫曼编码表
      * @return 压缩后的字节数组
      */

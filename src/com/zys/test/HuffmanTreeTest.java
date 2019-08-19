@@ -70,4 +70,16 @@ public class HuffmanTreeTest {
         System.out.println("压缩后字节数组长度：" + lenAfter);
         System.out.println("压缩率：" + (double) 100 * (lenBefore - lenAfter) / lenBefore + " %");
     }
+
+    @Test
+    public void testDecompress(){
+        //待压缩内容
+        String content = "i like like like java do you like a java";
+        System.out.println("压缩前文本内容：" + content);
+        //编码并压缩
+        byte[] compress = HuffmanCode.compress(content);
+        //解压并解码
+        String source = HuffmanCode.decompress(compress);
+        System.out.println("解压、解码后原始文本内容 : " + source);
+    }
 }
