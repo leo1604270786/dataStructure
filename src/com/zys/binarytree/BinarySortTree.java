@@ -8,7 +8,7 @@ package com.zys.binarytree;
  **/
 public class BinarySortTree {
     //根结点
-    private TreeNode root;
+    protected TreeNode root;
 
     /**
      * 删除值为value的结点
@@ -107,7 +107,7 @@ public class BinarySortTree {
      * @param value
      * @return
      */
-    private TreeNode search(TreeNode curr, int value) {
+    protected TreeNode search(TreeNode curr, int value) {
         if (curr == null)
             return null;
         if (value == curr.value) {
@@ -143,7 +143,7 @@ public class BinarySortTree {
      * @param value
      * @return
      */
-    private TreeNode searchParent(TreeNode curr, int value) {
+    protected TreeNode searchParent(TreeNode curr, int value) {
         if (curr == null)
             return null;
         if ((curr.leftChild != null && curr.leftChild.value == value)
@@ -190,7 +190,7 @@ public class BinarySortTree {
      * @param curr
      * @param node
      */
-    private void add(TreeNode curr, TreeNode node) {
+    protected void add(TreeNode curr, TreeNode node) {
         if (curr != null) {
             //大于当前根结点，向右子树继续比较
             if (node.value > curr.value) {
@@ -224,7 +224,7 @@ public class BinarySortTree {
      *
      * @param node
      */
-    private void inOrder(TreeNode node) {
+    protected void inOrder(TreeNode node) {
         if (node != null) {
             inOrder(node.leftChild);
             System.out.print(node.value + " ");
