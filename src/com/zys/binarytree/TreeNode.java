@@ -8,27 +8,27 @@ package com.zys.binarytree;
  **/
 public class TreeNode {
     //存储结点数据
-    private Object value;
+    public Integer value;
     //左孩子结点
-    private TreeNode leftChild;
+    public TreeNode leftChild;
     //右孩子结点
-    private TreeNode rightChild;
+    public TreeNode rightChild;
 
-    public TreeNode(Object value) {
+    public TreeNode(Integer value) {
         this.value = value;
     }
 
-    public TreeNode(Object value, TreeNode leftChild, TreeNode rightChild) {
+    public TreeNode(Integer value, TreeNode leftChild, TreeNode rightChild) {
         this.value = value;
         this.leftChild = leftChild;
         this.rightChild = rightChild;
     }
 
-    public Object getValue() {
+    public Integer getValue() {
         return value;
     }
 
-    public void setValue(Object value) {
+    public void setValue(Integer value) {
         this.value = value;
     }
 

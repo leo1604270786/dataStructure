@@ -96,7 +96,7 @@ public class MyLinkedBinaryTree implements BinaryTree{
         if (root == null)
             return null;
         //找到了第一个与value值相等的结点
-        else if (root.getValue() == value)
+        else if (root.getValue().equals(value))
             return root;
         else {
             //在左子树中查找
