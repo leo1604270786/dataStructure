@@ -1,5 +1,6 @@
 package com.zys.test;
 
+import com.zys.heap.Heap;
 import com.zys.sort.*;
 import org.junit.Before;
 import org.junit.Test;
@@ -174,6 +175,21 @@ public class SortTest {
         generateRandomArray(8000000);
         long startTime = System.currentTimeMillis();
         HeapSort.heapSort(arr);
+        long endTime = System.currentTimeMillis();
+        System.out.println("堆排序花费时间：" + (endTime - startTime) + " ms");
+    }
+
+    @Test
+    public void testHeapSort2() {
+//        System.out.println(Arrays.toString(arr));
+//        Heap heap = new Heap(arr);
+//        heap.heapSort();
+//        System.out.println(Arrays.toString(arr));
+        //生成数组
+        generateRandomArray(8000000);
+        long startTime = System.currentTimeMillis();
+        Heap heap = new Heap(arr);
+        heap.heapSort();
         long endTime = System.currentTimeMillis();
         System.out.println("堆排序花费时间：" + (endTime - startTime) + " ms");
     }
